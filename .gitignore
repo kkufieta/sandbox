@@ -1,2 +1,8 @@
-fake-slam-module
 main
+
+# Code editor settings
+.vscode
+   
+# artifact
+.artifact/cache
+.artifact/data
