@@ -5,10 +5,10 @@ import (
 	"context"
 	"strings"
 
+	fake "github.com/kkufieta/sandbox"
 	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/module"
 	"go.viam.com/rdk/services/slam"
-	"go.viam.com/rdk/services/slam/fake"
 	"go.viam.com/utils"
 )
 
