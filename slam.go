@@ -16,7 +16,7 @@ import (
 	"go.viam.com/rdk/spatialmath"
 )
 
-var Model = resource.NewModel("kkufieta", "slam", "fake")
+var Model = resource.NewModel("slam-dev", "slam", "fake")
 
 const datasetDirectory = "viam-office-02-22-3"
 
