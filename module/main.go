@@ -1,4 +1,4 @@
-// Package main is a module with a cartographer SLAM service model.
+// Package main is a module with a fake SLAM service model.
 package main
 
 import (
@@ -19,7 +19,7 @@ var (
 )
 
 func main() {
-	utils.ContextualMain(mainWithArgs, module.NewLoggerFromArgs("cartographerModule"))
+	utils.ContextualMain(mainWithArgs, module.NewLoggerFromArgs("fakeModule"))
 }
 
 func mainWithArgs(ctx context.Context, args []string, logger logging.Logger) error {
@@ -41,19 +41,19 @@ func mainWithArgs(ctx context.Context, args []string, logger logging.Logger) err
 	}
 
 	// Instantiate the module
-	cartoModule, err := module.NewModuleFromArgs(ctx, logger)
+	fakeModule, err := module.NewModuleFromArgs(ctx, logger)
 	if err != nil {
 		return err
 	}
 
-	// Add the cartographer model to the module
-	if err = cartoModule.AddModelFromRegistry(ctx, slam.API, fake.Model); err != nil {
+	// Add the fake model to the module
+	if err = fakeModule.AddModelFromRegistry(ctx, slam.API, fake.Model); err != nil {
 		return err
 	}
 
 	// Start the module
-	err = cartoModule.Start(ctx)
-	defer cartoModule.Close(ctx)
+	err = fakeModule.Start(ctx)
+	defer fakeModule.Close(ctx)
 	if err != nil {
 		return err
 	}
