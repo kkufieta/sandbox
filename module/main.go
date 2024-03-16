@@ -5,7 +5,9 @@ import (
 	"context"
 	"strings"
 
-	fake "github.com/kkufieta/sandbox"
+	bunnySlam "github.com/kkufieta/sandbox/bunnyslam"
+	fakeSlam "github.com/kkufieta/sandbox/fakeslam"
+	robotSlam "github.com/kkufieta/sandbox/robotslam"
 	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/module"
 	"go.viam.com/rdk/services/slam"
@@ -19,7 +21,7 @@ var (
 )
 
 func main() {
-	utils.ContextualMain(mainWithArgs, module.NewLoggerFromArgs("fakeModule"))
+	utils.ContextualMain(mainWithArgs, module.NewLoggerFromArgs("fakeSlam"))
 }
 
 func mainWithArgs(ctx context.Context, args []string, logger logging.Logger) error {
@@ -31,9 +33,9 @@ func mainWithArgs(ctx context.Context, args []string, logger logging.Logger) err
 		versionFields = append(versionFields, "git_rev", GitRevision)
 	}
 	if len(versionFields) != 0 {
-		logger.Infow(fake.Model.String(), versionFields...)
+		logger.Infow(fakeSlam.Model.String(), versionFields...)
 	} else {
-		logger.Info(fake.Model.String() + " built from source; version unknown")
+		logger.Info(fakeSlam.Model.String() + " built from source; version unknown")
 	}
 
 	if len(args) == 2 && strings.HasSuffix(args[1], "-version") {
@@ -46,8 +48,18 @@ func mainWithArgs(ctx context.Context, args []string, logger logging.Logger) err
 		return err
 	}
 
-	// Add the fake model to the module
-	if err = fakeModule.AddModelFromRegistry(ctx, slam.API, fake.Model); err != nil {
+	// Add the fakeSlam model to the module
+	if err = fakeModule.AddModelFromRegistry(ctx, slam.API, fakeSlam.Model); err != nil {
+		return err
+	}
+
+	// Add the bunnySlam model to the module
+	if err = fakeModule.AddModelFromRegistry(ctx, slam.API, bunnySlam.Model); err != nil {
+		return err
+	}
+
+	// Add the robotSlam model to the module
+	if err = fakeModule.AddModelFromRegistry(ctx, slam.API, robotSlam.Model); err != nil {
 		return err
 	}
 

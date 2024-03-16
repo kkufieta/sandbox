@@ -1,5 +1,5 @@
-// Package fake implements a fake slam service
-package fake
+// Package bunnyslam implements a fake slam service
+package bunnyslam
 
 import (
 	"bytes"
@@ -16,9 +16,9 @@ import (
 	"go.viam.com/rdk/spatialmath"
 )
 
-var Model = resource.NewModel("slam-dev", "slam", "fake")
+var Model = resource.NewModel("kats-org", "slam", "fake-bunny")
 
-const datasetDirectory = "viam-office-02-22-3"
+const datasetDirectory = "bunny"
 
 func init() {
 	resource.RegisterService(
