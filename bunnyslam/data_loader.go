@@ -1,4 +1,4 @@
-package fake
+package bunnyslam
 
 import (
 	"context"
@@ -39,7 +39,7 @@ type position struct {
 	Extra              extra  `json:"extra"`
 }
 
-var maxDataCount = 24
+var maxDataCount = 10
 
 const (
 	internalStateTemplate = "%s/internal_state/internal_state_%d.pbstream"
@@ -89,7 +89,15 @@ func fakeInternalState(ctx context.Context, datasetDir string, slamSvc *SLAM) (f
 }
 
 func fakePosition(ctx context.Context, datasetDir string, slamSvc *SLAM) (spatialmath.Pose, string, error) {
+	fmt.Println("")
+	fmt.Println("********* datasetDir: ", datasetDir)
+	fmt.Println("********* positionTemplate: ", positionTemplate)
+	fmt.Println("********* sprintf: ", fmt.Sprintf(positionTemplate, datasetDir, slamSvc.getCount()))
+	fmt.Println("")
 	path := filepath.Clean(artifact.MustPath(fmt.Sprintf(positionTemplate, datasetDir, slamSvc.getCount())))
+	fmt.Println("")
+	fmt.Println("********* Path: ", path)
+	fmt.Println("")
 	// path := filepath.Clean(fmt.Sprintf(positionTemplate, datasetDir, slamSvc.getCount()))
 	slamSvc.logger.CDebug(ctx, "Reading "+path)
 	data, err := os.ReadFile(path)

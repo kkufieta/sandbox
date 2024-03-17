@@ -1,12 +1,20 @@
 {
-  "module_id": "slam-dev:fake-slam",
-  "visibility": "private",
+  "module_id": "kats-org:fake-slam-staging",
+  "visibility": "public",
   "url": "https://github.com/kkufieta/sandbox",
   "description": "The fake slam module contains PCDs and poses it loops through and returns.",
   "models": [
     {
       "api": "rdk:service:slam",
-      "model": "slam-dev:slam:fake"
+      "model": "kats-org:slam:fake"
+    },
+    {
+      "api": "rdk:service:slam",
+      "model": "kats-org:slam:fake-bunny"
+    },
+    {
+      "api": "rdk:service:slam",
+      "model": "kats-org:slam:fake-robots"
     }
   ],
   "entrypoint": "bin/module"
