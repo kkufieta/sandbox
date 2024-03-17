@@ -1,12 +1,14 @@
 module github.com/kkufieta/sandbox
 
-go 1.20
+go 1.21
+
+toolchain go1.21.8
 
 require (
 	github.com/golang/geo v0.0.0-20230421003525-6adc56603217
 	go.opencensus.io v0.24.0
-	go.viam.com/rdk v0.20.1-0.20240213210407-e6fce2c51d14
-	go.viam.com/utils v0.1.61
+	go.viam.com/rdk v0.22.1
+	go.viam.com/utils v0.1.67
 )
 
 require (
@@ -118,7 +120,7 @@ require (
 	go.uber.org/goleak v1.2.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
-	go.viam.com/api v0.1.266 // indirect
+	go.viam.com/api v0.1.275 // indirect
 	go.viam.com/test v1.1.1-0.20220913152726-5da9916c08a2 // indirect
 	go4.org/unsafe/assume-no-moving-gc v0.0.0-20231121144256-b99613f794b6 // indirect
 	golang.org/x/crypto v0.16.0 // indirect
@@ -147,3 +149,5 @@ require (
 	nhooyr.io/websocket v1.8.10 // indirect
 	periph.io/x/host/v3 v3.8.2 // indirect
 )
+
+replace go.viam.com/rdk => github.com/kkufieta/rdk v0.0.0-20240317165737-2d44e113db26
